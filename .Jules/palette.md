@@ -1,0 +1,3 @@
+## 2025-05-22 - [Mobile Navigation Accessibility & Interaction]
+**Learning:** For static sites without a complex framework, ensuring that the mobile menu state is communicated via ARIA attributes is critical for screen reader users. Additionally, animating the hamburger icon into an "X" provides immediate visual confirmation of the menu's state. Using `:focus-visible` is an excellent way to provide high-visibility focus indicators for keyboard users without affecting mouse/touch users.
+**Action:** Always include `aria-expanded` and `aria-controls` for toggles and manage them in the accompanying JavaScript. Use CSS transforms for smooth icon animations.
