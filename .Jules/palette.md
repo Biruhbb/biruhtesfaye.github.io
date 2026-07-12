@@ -1,0 +1,3 @@
+## 2025-07-12 - [Focus Visibility and Mobile Nav ARIA]
+**Learning:** In dark-themed, minimalist portfolios, default browser focus rings are often invisible or clash with the design. Using `:focus-visible` with a 2px solid --accent outline and 4px offset provides high-contrast, accessible feedback without disturbing mouse users. Additionally, mobile navigation toggles must use `aria-expanded` and `aria-controls` to be accessible to screen reader users.
+**Action:** Always check for focus visibility on dark themes and ensure dynamic ARIA attributes for custom interactive elements like mobile menus.
