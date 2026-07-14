@@ -11,12 +11,13 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- NAV -->
   <nav class="nav" id="nav">
     <a href="index.html" class="nav-logo">Biruh Tesfaye</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-controls="navLinks" aria-expanded="false">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#work">Work</a></li>
@@ -26,7 +27,7 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="main-content">
     <div class="hero-inner">
       <p class="hero-tag">Graphic Designer · Brand Identity · Illustration</p>
       <h1 class="hero-headline">I design identities<br>worth remembering.</h1>
