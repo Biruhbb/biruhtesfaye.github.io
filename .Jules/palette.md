@@ -1,0 +1,3 @@
+## 2025-05-14 - Mobile Navigation Accessibility
+**Learning:** Interactive components like mobile menus require explicit state management via ARIA attributes to be accessible to screen reader users. Toggling a CSS class only provides visual feedback, leaving assistive technologies unaware of state changes. Furthermore, keyboard-only users expect standard interactions like using the 'Escape' key to close transient overlays.
+**Action:** Always implement `aria-expanded` and `aria-controls` for toggleable UI elements. Complement visual state changes with matching ARIA updates and provide keyboard shortcuts (Escape key) for closing menus or modals to ensure a smooth, accessible experience.
