@@ -8,12 +8,30 @@ window.addEventListener('scroll', () => {
 const toggle = document.getElementById('navToggle');
 const links = document.getElementById('navLinks');
 if (toggle && links) {
+  const updateToggleState = (isOpen) => {
+    toggle.setAttribute('aria-expanded', isOpen);
+  };
+
   toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
+    const isOpen = links.classList.toggle('open');
+    updateToggleState(isOpen);
   });
+
   // Close on link click
   links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      updateToggleState(false);
+    });
+  });
+
+  // Close on Escape key press
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && links.classList.contains('open')) {
+      links.classList.remove('open');
+      updateToggleState(false);
+      toggle.focus();
+    }
   });
 }
 
