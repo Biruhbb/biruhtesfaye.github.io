@@ -1,0 +1,3 @@
+## 2026-07-17 - Mobile Navigation Accessibility
+**Learning:** Decorative icons and bars inside hamburger menu buttons should be hidden from screen readers using `aria-hidden="true"`, and the toggle itself must dynamically reflect and communicate state updates via `aria-expanded` and `aria-controls`. Support for the `Escape` key ensures keyboard navigability and provides an expected exit route for modal states.
+**Action:** Always pair `aria-expanded` and `aria-controls` with mobile menu toggles and manage their state in the interaction script while ensuring ESC key closure and focus restoration.
