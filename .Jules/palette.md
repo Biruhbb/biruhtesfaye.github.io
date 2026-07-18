@@ -1,0 +1,3 @@
+## 2025-02-18 - Mobile Hamburger Menu Accessibility
+**Learning:** Screen readers correctly announce interactive buttons using `aria-label`, but without proper dynamic state attributes like `aria-expanded` and `aria-controls`, blind and low-vision users cannot tell whether a navigation menu is open or closed. Furthermore, inner visual elements (like CSS lines/spans inside a hamburger menu) or icons (like Unicode emojis in links) clutter the screen reader output unless hidden.
+**Action:** Always map toggle buttons using dynamic `aria-expanded` properties and link them to content blocks with `aria-controls`. Ensure decorative or redundant sub-elements use `aria-hidden="true"` and support "Escape" key handlers to close menus and return focus.
