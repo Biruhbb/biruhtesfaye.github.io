@@ -475,3 +475,10 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .about-photo-wrap { aspect-ratio: 1; max-width: 240px; }
   .footer { flex-direction: column; gap: 6px; padding: 20px 24px; }
 }
+
+/* KEYBOARD ACCESSIBILITY: Visible Focus Indicators */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
