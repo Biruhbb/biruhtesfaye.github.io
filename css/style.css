@@ -28,6 +28,12 @@ body {
 a { color: inherit; text-decoration: none; }
 img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
+/* Focus indicator for keyboard accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
 /* NAV */
 .nav {
   position: fixed;
