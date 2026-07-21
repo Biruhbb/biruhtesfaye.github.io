@@ -1,0 +1,3 @@
+## 2026-07-21 - Accessible Dark Mode Portfolio Navigation
+**Learning:** In a dark-themed portfolio website, standard focus rings can be hard to see against black or near-black backgrounds. Explicit focus-visible styling using bright/contrast colors is essential for clear keyboard navigation. Furthermore, hamburger menu buttons and custom icons/emojis must have proper ARIA attributes (`aria-expanded`, `aria-controls`, `aria-hidden`) so screen readers and assistive technology can understand the site structure.
+**Action:** Always provide custom focus-visible styling (e.g., `outline: 2px solid var(--accent); outline-offset: 4px;`) and ensure dynamic ARIA properties like `aria-expanded` are handled dynamically via JavaScript on state toggle.
