@@ -8,12 +8,35 @@ window.addEventListener('scroll', () => {
 const toggle = document.getElementById('navToggle');
 const links = document.getElementById('navLinks');
 if (toggle && links) {
+  const closeMenu = () => {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+
+  const openMenu = () => {
+    links.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+  };
+
   toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
+    if (links.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
+
   // Close on link click
   links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
+    a.addEventListener('click', closeMenu);
+  });
+
+  // Escape key support to close menu and restore focus
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && links.classList.contains('open')) {
+      closeMenu();
+      toggle.focus();
+    }
   });
 }
 
