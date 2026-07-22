@@ -1,0 +1,3 @@
+## 2026-07-22 - Mobile Navigation Accessibility
+**Learning:** In highly customized, dark-themed, and responsive portfolios, custom navigation menus often lack basic keyboard accessibility (e.g., focus management, ESC key behavior) and ARIA attributes needed for assistive technologies. Furthermore, focus rings are frequently hidden to maintain visual minimalism, harming keyboard-only users.
+**Action:** Always add `aria-expanded` and `aria-controls` to the toggle button, manage this state dynamically via JS, implement an Escape key listener to close the menu and return focus to the toggle button, and add high-contrast `:focus-visible` outline indicators using design tokens.
