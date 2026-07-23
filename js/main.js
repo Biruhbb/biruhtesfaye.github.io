@@ -8,12 +8,29 @@ window.addEventListener('scroll', () => {
 const toggle = document.getElementById('navToggle');
 const links = document.getElementById('navLinks');
 if (toggle && links) {
+  const toggleMenu = (forceState) => {
+    const isOpen = forceState !== undefined ? forceState : !links.classList.contains('open');
+    links.classList.toggle('open', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  };
+
   toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
+    toggleMenu();
   });
+
   // Close on link click
   links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
+    a.addEventListener('click', () => {
+      toggleMenu(false);
+    });
+  });
+
+  // Support 'Escape' key to close and restore focus
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && links.classList.contains('open')) {
+      toggleMenu(false);
+      toggle.focus();
+    }
   });
 }
 
