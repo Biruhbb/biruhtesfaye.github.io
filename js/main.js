@@ -8,12 +8,37 @@ window.addEventListener('scroll', () => {
 const toggle = document.getElementById('navToggle');
 const links = document.getElementById('navLinks');
 if (toggle && links) {
+  // Initialize ARIA accessibility attributes
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-controls', 'navLinks');
+  toggle.querySelectorAll('span').forEach(span => span.setAttribute('aria-hidden', 'true'));
+
+  const setMenuOpenState = (open) => {
+    if (open) {
+      links.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+    } else {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  };
+
   toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
+    const isOpen = links.classList.contains('open');
+    setMenuOpenState(!isOpen);
   });
+
   // Close on link click
   links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
+    a.addEventListener('click', () => setMenuOpenState(false));
+  });
+
+  // Close on Escape key press and restore focus to toggle button
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && links.classList.contains('open')) {
+      setMenuOpenState(false);
+      toggle.focus();
+    }
   });
 }
 
