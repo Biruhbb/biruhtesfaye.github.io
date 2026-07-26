@@ -4,20 +4,39 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
 });
 
-// Mobile nav toggle
+// Mobile nav toggle with enhanced accessibility
 const toggle = document.getElementById('navToggle');
 const links = document.getElementById('navLinks');
 if (toggle && links) {
-  toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
-  });
+  // Set initial accessibility attributes dynamically
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-controls', 'navLinks');
+
+  const toggleMenu = (forceState) => {
+    const isOpen = forceState !== undefined ? forceState : links.classList.toggle('open');
+    if (forceState !== undefined) {
+      links.classList.toggle('open', isOpen);
+    }
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  };
+
+  toggle.addEventListener('click', () => toggleMenu());
+
   // Close on link click
   links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
+    a.addEventListener('click', () => toggleMenu(false));
+  });
+
+  // Close on Escape key press and restore focus to toggle
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && links.classList.contains('open')) {
+      toggleMenu(false);
+      toggle.focus();
+    }
   });
 }
 
-// Fade in on scroll
+// Fade in on scroll with keyboard focus support
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -32,4 +51,10 @@ document.querySelectorAll('.project-card, .cs-section, .cs-cols, .img-grid-2, .i
   el.style.transform = 'translateY(20px)';
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
   observer.observe(el);
+
+  // Instantly reveal element if it or any child receives focus (preventing invisible focus trap)
+  el.addEventListener('focusin', () => {
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0)';
+  });
 });
