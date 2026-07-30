@@ -8,12 +8,25 @@ window.addEventListener('scroll', () => {
 const toggle = document.getElementById('navToggle');
 const links = document.getElementById('navLinks');
 if (toggle && links) {
-  toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
-  });
+  const toggleMenu = (forceState) => {
+    const willOpen = forceState !== undefined ? forceState : !links.classList.contains('open');
+    links.classList.toggle('open', willOpen);
+    toggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  };
+
+  toggle.addEventListener('click', () => toggleMenu());
+
   // Close on link click
   links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
+    a.addEventListener('click', () => toggleMenu(false));
+  });
+
+  // Handle Escape key to close and restore focus
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && links.classList.contains('open')) {
+      toggleMenu(false);
+      toggle.focus();
+    }
   });
 }
 
@@ -32,4 +45,10 @@ document.querySelectorAll('.project-card, .cs-section, .cs-cols, .img-grid-2, .i
   el.style.transform = 'translateY(20px)';
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
   observer.observe(el);
+
+  // Instantly show element on focusin to prevent invisible keyboard focus traps
+  el.addEventListener('focusin', () => {
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0)';
+  });
 });
