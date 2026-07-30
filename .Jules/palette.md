@@ -1,0 +1,3 @@
+## 2026-07-30 - Dark Theme & Scroll Animations Keyboard Focus UX
+**Learning:** In a dark-themed portfolio website with scroll-based fade-in animations, keyboard focus indicators can easily become invisible or trapped inside non-scrolled container sections (where opacity is 0). Explicit focus visibility and automatic animation state promotion upon focus are critical for accessible navigation.
+**Action:** Always provide customized focus-visible indicators (--accent color with offset outlines) and ensure all scroll-animated components automatically transition to fully visible states immediately when they or any nested focusable element receives focus.
