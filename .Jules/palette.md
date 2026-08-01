@@ -1,0 +1,3 @@
+## 2026-06-20 - Dark Theme & Scroll Animation Keyboard Focus Management
+**Learning:** In highly customized dark-themed portfolios using scroll-based reveal animations (e.g., setting elements to `opacity: 0` until scrolled), keyboard users encounter two major barriers: invisible focus indicators due to dark browser defaults, and invisible focus traps where interactive elements (like project cards) are tabbed into but remain entirely hidden because they haven't been scrolled into view.
+**Action:** Always provide custom, high-contrast `:focus-visible` styles matching the accent color, and add standard `focusin` event listeners to scroll-animated elements so they instantly reveal themselves and their content upon keyboard focus.

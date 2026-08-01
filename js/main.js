@@ -8,12 +8,31 @@ window.addEventListener('scroll', () => {
 const toggle = document.getElementById('navToggle');
 const links = document.getElementById('navLinks');
 if (toggle && links) {
+  // Initialize ARIA attributes
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-controls', 'navLinks');
+
+  const setMenuState = (isOpen) => {
+    links.classList.toggle('open', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  };
+
   toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
+    const isOpen = links.classList.contains('open');
+    setMenuState(!isOpen);
   });
+
   // Close on link click
   links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
+    a.addEventListener('click', () => setMenuState(false));
+  });
+
+  // Support Escape key to close and restore focus
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && links.classList.contains('open')) {
+      setMenuState(false);
+      toggle.focus();
+    }
   });
 }
 
@@ -32,4 +51,10 @@ document.querySelectorAll('.project-card, .cs-section, .cs-cols, .img-grid-2, .i
   el.style.transform = 'translateY(20px)';
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
   observer.observe(el);
+
+  // Instantly show on keyboard focus to prevent invisible focus trap
+  el.addEventListener('focusin', () => {
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0)';
+  });
 });
