@@ -1,0 +1,3 @@
+## 2026-06-20 - Focus Style Transition Verification
+**Learning:** Elements styled with global transitions (e.g., `transition: all 0.2s`) will animate keyboard focus outline properties (such as `outline` and `outline-offset`) over time. Direct, instant assertions in headless testing environments like Playwright may retrieve intermediate values (such as `outline-width: 0px` or pre-transition offsets) resulting in false negatives.
+**Action:** Always wait for CSS transitions to finish (e.g., `page.wait_for_timeout(300)`) before querying computed styles or taking screenshots to verify visual focus styling.

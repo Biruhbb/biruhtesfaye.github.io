@@ -16,6 +16,12 @@
 
 html { scroll-behavior: smooth; }
 
+/* Global Focus-Visible Styling for Keyboard Accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 4px !important;
+}
+
 body {
   background: var(--bg);
   color: var(--text);
