@@ -4,16 +4,35 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
 });
 
-// Mobile nav toggle
+// Mobile nav toggle accessibility & interaction
 const toggle = document.getElementById('navToggle');
 const links = document.getElementById('navLinks');
 if (toggle && links) {
+  // Initialize ARIA attributes dynamically
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-controls', 'navLinks');
+
+  const toggleMenu = (open) => {
+    links.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+
   toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
+    const isOpen = links.classList.contains('open');
+    toggleMenu(!isOpen);
   });
+
   // Close on link click
   links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
+    a.addEventListener('click', () => toggleMenu(false));
+  });
+
+  // Close on Escape key and restore focus
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && links.classList.contains('open')) {
+      toggleMenu(false);
+      toggle.focus();
+    }
   });
 }
 
@@ -32,4 +51,10 @@ document.querySelectorAll('.project-card, .cs-section, .cs-cols, .img-grid-2, .i
   el.style.transform = 'translateY(20px)';
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
   observer.observe(el);
+
+  // Instantly reveal element on focus to prevent focus traps
+  el.addEventListener('focusin', () => {
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0)';
+  });
 });
