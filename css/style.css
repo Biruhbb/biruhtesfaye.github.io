@@ -1,5 +1,11 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Global focus visible indicator for keyboard accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 4px !important;
+}
+
 :root {
   --bg: #111111;
   --bg2: #161616;
