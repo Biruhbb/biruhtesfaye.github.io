@@ -1,0 +1,3 @@
+## 2025-08-15 - Mobile Navigation ARIA & Keyboard Escape Key Handling
+**Learning:** Icon-only menu toggles on mobile viewports often lack standard ARIA state attributes (`aria-expanded`, `aria-controls`) and key bindings, leaving screen reader users and keyboard navigators unable to determine menu expanded state or easily close the overlay.
+**Action:** Always set `aria-controls` and dynamic `aria-expanded` attributes on disclosure toggles, mark decorative inner elements with `aria-hidden="true"`, and attach an `Escape` key event listener that closes the disclosure menu and restores focus back to the toggle button.
