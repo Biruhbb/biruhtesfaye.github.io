@@ -8,12 +8,27 @@ window.addEventListener('scroll', () => {
 const toggle = document.getElementById('navToggle');
 const links = document.getElementById('navLinks');
 if (toggle && links) {
+  const setExpanded = (expanded) => {
+    links.classList.toggle('open', expanded);
+    toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+  };
+
   toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
+    const isOpen = links.classList.contains('open');
+    setExpanded(!isOpen);
   });
+
   // Close on link click
   links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
+    a.addEventListener('click', () => setExpanded(false));
+  });
+
+  // Close on Escape keypress
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && links.classList.contains('open')) {
+      setExpanded(false);
+      toggle.focus();
+    }
   });
 }
 
