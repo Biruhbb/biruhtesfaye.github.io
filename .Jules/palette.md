@@ -1,0 +1,3 @@
+## 2025-09-03 - Mobile Navigation Toggle ARIA State & Focus Management
+**Learning:** Pure CSS or simple JS class toggles for mobile navigation menus often omit dynamic `aria-expanded` attributes and `aria-controls`, leaving screen reader users uninformed of navigation menu state changes. Additionally, closing open overlays via `Escape` keypress and returning focus to the toggle button provides essential keyboard navigation accessibility.
+**Action:** Always include `aria-expanded="false"` and `aria-controls` on mobile navigation toggle buttons in HTML, update `aria-expanded` dynamically in JS on toggle/close events, and handle `Escape` keypress to close the menu and return focus to the toggle.
