@@ -8,12 +8,25 @@ window.addEventListener('scroll', () => {
 const toggle = document.getElementById('navToggle');
 const links = document.getElementById('navLinks');
 if (toggle && links) {
-  toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
-  });
+  const toggleNav = (isOpen) => {
+    const open = typeof isOpen === 'boolean' ? isOpen : !links.classList.contains('open');
+    links.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+
+  toggle.addEventListener('click', () => toggleNav());
+
   // Close on link click
   links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
+    a.addEventListener('click', () => toggleNav(false));
+  });
+
+  // Close on Escape keypress and return focus
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && links.classList.contains('open')) {
+      toggleNav(false);
+      toggle.focus();
+    }
   });
 }
 
