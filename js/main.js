@@ -8,12 +8,29 @@ window.addEventListener('scroll', () => {
 const toggle = document.getElementById('navToggle');
 const links = document.getElementById('navLinks');
 if (toggle && links) {
-  toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
-  });
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-controls', 'navLinks');
+  toggle.querySelectorAll('span').forEach(s => s.setAttribute('aria-hidden', 'true'));
+
+  const toggleMenu = (open) => {
+    const isOpen = open !== undefined ? open : !links.classList.contains('open');
+    links.classList.toggle('open', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen.toString());
+  };
+
+  toggle.addEventListener('click', () => toggleMenu());
+
   // Close on link click
   links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
+    a.addEventListener('click', () => toggleMenu(false));
+  });
+
+  // Close on Escape keypress
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && links.classList.contains('open')) {
+      toggleMenu(false);
+      toggle.focus();
+    }
   });
 }
 
