@@ -10,9 +10,10 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <nav class="nav" id="nav">
     <a href="index.html" class="nav-logo">Biruh Tesfaye</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="navLinks">
@@ -21,6 +22,8 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
+
+  <main id="main-content" tabindex="-1">
 
   <div class="project-hero">
     <a href="index.html" class="back-link">← Back to work</a>
@@ -127,7 +130,7 @@
     </div>
 
     <div class="result-bar">
-      <div class="result-bar-icon">✓</div>
+      <div class="result-bar-icon" aria-hidden="true">✓</div>
       <div class="result-bar-text"><strong>Approved by client</strong> — brand identity signed off and currently in production rollout for the export launch.</div>
     </div>
 
@@ -136,6 +139,8 @@
       <a href="project-dec.html" class="btn-outline">Next project →</a>
     </div>
   </div>
+
+    </main>
 
   <footer class="footer">
     <span>Biruh Tesfaye © 2025</span>

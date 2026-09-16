@@ -10,17 +10,20 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <nav class="nav" id="nav">
     <a href="index.html" class="nav-logo">Biruh Tesfaye</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html#work">Work</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="about.html" aria-current="page">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
+
+  <main id="main-content" tabindex="-1">
 
   <div class="about-wrap">
     <div class="about-grid">
@@ -57,6 +60,8 @@
       </div>
     </div>
   </div>
+
+    </main>
 
   <footer class="footer">
     <span>Biruh Tesfaye © 2025</span>
