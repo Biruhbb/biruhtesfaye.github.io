@@ -431,23 +431,57 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 }
 .contact-heading { font-size: 36px; font-weight: 400; color: var(--text); margin-bottom: 14px; letter-spacing: -0.02em; }
 .contact-sub { font-size: 16px; color: var(--text2); margin-bottom: 48px; line-height: 1.7; }
-.contact-links { display: flex; flex-direction: column; gap: 12px; max-width: 360px; margin: 0 auto; }
+.contact-links { display: flex; flex-direction: column; gap: 12px; max-width: 400px; margin: 0 auto; }
+.contact-link-item {
+  display: flex;
+  align-items: center;
+  background: var(--bg2);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  transition: border-color 0.2s;
+}
+.contact-link-item:hover, .contact-link-item:focus-within {
+  border-color: #444;
+}
 .contact-link {
   display: flex;
   align-items: center;
   gap: 14px;
   padding: 16px 20px;
-  background: var(--bg2);
-  border: 0.5px solid var(--border);
-  border-radius: 8px;
   font-size: 14px;
   color: var(--text2);
-  transition: all 0.2s;
+  transition: color 0.2s;
   text-align: left;
+  flex: 1;
 }
-.contact-link:hover { border-color: #444; color: var(--text); }
+.contact-link:hover { color: var(--text); }
 .contact-link-icon { font-size: 16px; color: var(--text3); }
 .contact-link-label { font-size: 11px; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 2px; }
+.copy-btn {
+  background: transparent;
+  border: 0.5px solid var(--border2);
+  border-radius: 4px;
+  color: var(--text3);
+  font-size: 11px;
+  font-family: var(--font);
+  padding: 6px 10px;
+  margin-right: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.copy-btn:hover {
+  color: var(--text);
+  border-color: #666;
+}
+.copy-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.copy-btn.copied {
+  color: var(--accent);
+  border-color: var(--accent);
+}
 
 /* FOOTER */
 .footer {
