@@ -33,3 +33,26 @@ document.querySelectorAll('.project-card, .cs-section, .cs-cols, .img-grid-2, .i
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
   observer.observe(el);
 });
+
+// Copy to clipboard
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const textToCopy = btn.getAttribute('data-copy');
+    if (!textToCopy) return;
+
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      const span = btn.querySelector('span') || btn;
+      const originalText = span.textContent;
+      btn.classList.add('copied');
+      span.textContent = 'Copied!';
+
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        span.textContent = originalText;
+      }, 2000);
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  });
+});
