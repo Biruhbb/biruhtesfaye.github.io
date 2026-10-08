@@ -28,6 +28,23 @@ body {
 a { color: inherit; text-decoration: none; }
 img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
+/* FOCUS STYLES FOR KEYBOARD ACCESSIBILITY */
+a:focus-visible,
+button:focus-visible,
+.project-card:focus-visible,
+.btn-outline:focus-visible,
+.contact-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.project-card:focus-visible {
+  border-radius: 12px;
+}
+.contact-link:focus-visible {
+  border-radius: 8px;
+}
+
 /* NAV */
 .nav {
   position: fixed;
