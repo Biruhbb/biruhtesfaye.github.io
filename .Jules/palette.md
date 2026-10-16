@@ -1,0 +1,3 @@
+## 2025-05-18 - [Dark Theme Focus Indicators & Mobile Navigation ARIA States]
+**Learning:** Dark theme UI interfaces require explicit `:focus-visible` styling (such as accent-colored outlines with offset) to ensure keyboard navigation remains clear without disrupting mouse hover designs. Additionally, custom hamburger menu toggles require dynamic `aria-expanded` updates and `Escape` key event listeners so screen reader users and keyboard navigators can comfortably manage navigation menus.
+**Action:** Always complement custom JS menu overlays with `aria-expanded`, `aria-controls`, `aria-hidden` on decorative spans, and an `Escape` key listener that returns focus back to the toggle button.
