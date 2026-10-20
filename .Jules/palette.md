@@ -1,0 +1,3 @@
+## 2026-10-20 - Mobile Nav & Focus Visible Accessibility
+**Learning:** Mobile toggle buttons require explicit `aria-expanded` and `aria-controls` attributes, along with Escape key handlers to dismiss mobile menus and return focus to the toggle button for keyboard navigation. Additionally, custom `:focus-visible` outlines using existing design system tokens (`--accent`) ensure keyboard focus clarity without affecting pointer clicks.
+**Action:** Always pair mobile navigation toggle logic with dynamic `aria-expanded` state management and Escape key dismissal, and ensure `:focus-visible` styling is defined for interactive controls.
