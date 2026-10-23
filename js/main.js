@@ -1,19 +1,40 @@
 // Nav scroll effect
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-});
+if (nav) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+}
 
 // Mobile nav toggle
 const toggle = document.getElementById('navToggle');
 const links = document.getElementById('navLinks');
 if (toggle && links) {
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-controls', 'navLinks');
+  toggle.querySelectorAll('span').forEach(span => span.setAttribute('aria-hidden', 'true'));
+
+  const setNavOpen = (isOpen) => {
+    links.classList.toggle('open', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen.toString());
+  };
+
   toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
+    const isOpen = links.classList.contains('open');
+    setNavOpen(!isOpen);
   });
+
   // Close on link click
   links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
+    a.addEventListener('click', () => setNavOpen(false));
+  });
+
+  // Close on Escape key press and restore focus to toggle
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && links.classList.contains('open')) {
+      setNavOpen(false);
+      toggle.focus();
+    }
   });
 }
 
