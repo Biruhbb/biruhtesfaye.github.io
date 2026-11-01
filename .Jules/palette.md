@@ -1,0 +1,3 @@
+## 2026-11-01 - Keyboard Focus Indicator for Interactive Portfolio Cards and Links
+**Learning:** In dark minimalist portfolio websites without explicit focus outlines, keyboard users cannot determine which project card or navigation element is currently focused. Applying a global `:focus-visible` ring using the existing `--accent` CSS variable with `outline-offset: 3px` and `border-radius: 4px` provides a clear, high-contrast indicator for keyboard users while preserving the clean aesthetic for pointer users.
+**Action:** Always implement `:focus-visible` styling early on dark-themed UI components using design tokens (`var(--accent)`).
