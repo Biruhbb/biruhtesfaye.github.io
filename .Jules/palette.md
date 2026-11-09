@@ -1,0 +1,3 @@
+## 2026-06-29 - Focus-visible and Reduced Motion in Minimalist Portfolios
+**Learning:** Dark-mode minimalist portfolio sites frequently strip default outlines on interactive elements without providing custom keyboard navigation styles. Providing an explicit `:focus-visible` rule matching the brand's accent (`var(--accent)`) with an offset ensures WCAG 2.4.7 compliance without visual distraction for mouse users. Combining this with a standard `@media (prefers-reduced-motion: reduce)` override respects vestibular-disorder preferences on smooth scrolls and intersection transitions.
+**Action:** Always provide a global `:focus-visible` ring using established accent tokens (`--accent`) and a `prefers-reduced-motion` reset when building or auditing static portfolio sites.
